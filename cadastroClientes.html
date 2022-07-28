@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 400px;
+            margin:100px 180px auto;
+            padding: 5px;
+        }
+
+        input{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="informe nome" />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="informe email" />
+
+        <label for="fone">Fone</label>
+        <input type="text" id="fone" placeholder="informe fone" />
+        <div>
+            <button onclick="salvar()">Salvar</button>
+            <button>Cancelar</button>
+        </div>
+        <label id="msgerro"></label>
+    </div>
+    <script src="./cadastroClientes.js"></script>
+</body>
+</html>

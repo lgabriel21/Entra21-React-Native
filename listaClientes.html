@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    
+
+</head>
+<body onload="pesquisar()">
+    <h1>Lista de clientes</h1>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Fone</th>
+                <th>Excluir</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+  
+    <script>
+        function pesquisar(){
+            fetch('http://localhost:3000/clientes')
+            .then(data => data.json())
+            .then(lista =>{
+                var linha = ""
+                for(let i = 0 ; i < lista.length; i++){
+                  linha += '<tr>'
+                  linha += `<td> ${lista[i].id} </td>`
+                  linha += `<td> ${lista[i].nome} </td>`
+                  linha += `<td> ${lista[i].email} </td>`
+                  linha += `<td> ${lista[i].fone} </td>`
+                  linha += `<td> <button onclick=excluir(${lista[i].id})>excluir</button> </td>`
+                  linha += `<td> <a href='editarcliente.html?idselecionado=${lista[i].id}'><button>alterar</button></a> </td>`
+                  linha += '</tr>'
+                }
+                document.getElementsByTagName("tbody")[0].innerHTML = linha
+            } )   
+        }
+
+        function excluir(idcliente){
+            fetch(`http://localhost:3000/clientes/${idcliente}`, { method: 'DELETE'})
+            .then(data => data.json())
+            .then(cli => window.location.reload())
+        }         
+    </script>
+</body>
+</html>
